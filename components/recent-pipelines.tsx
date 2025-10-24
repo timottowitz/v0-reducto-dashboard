@@ -1,65 +1,51 @@
-"use client"
-
 import { Card } from "@/components/ui/card"
 import { MoreVertical } from "lucide-react"
 import Image from "next/image"
 
 const pipelines = [
   {
-    id: "solar-fraud-complaint",
     name: "Solar Panel Fraud Complaint",
     type: "Parse → Split",
-    processorType: "parse",
     files: "1 file",
     creator: "Tim Ottowitz",
     updated: "10/21/2025",
     thumbnail: "/solar-fraud-complaint.jpg",
   },
   {
-    id: "class-action-discovery",
     name: "Class Action Discovery Docs",
     type: "Parse → Extract",
-    processorType: "extract",
     files: "1 file",
     creator: "Tim Ottowitz",
     updated: "10/21/2025",
     thumbnail: "/class-action-discovery.jpg",
   },
   {
-    id: "solar-lease-fraud",
     name: "Solar Lease Fraud Evidence",
     type: "Edit",
-    processorType: "edit",
     files: "1 file",
     creator: "Legal OS Demo",
     updated: "10/21/2025",
     thumbnail: "/solar-lease-fraud.jpg",
   },
   {
-    id: "deposition-transcripts",
     name: "Deposition Transcripts",
     type: "Parse → Extract",
-    processorType: "extract",
     files: "1 file",
     creator: "Legal OS Demo",
     updated: "10/21/2025",
     thumbnail: "/deposition-transcript.jpg",
   },
   {
-    id: "consumer-protection",
     name: "Consumer Protection Filing",
     type: "Parse → Split → Extract",
-    processorType: "split",
     files: "1 file",
     creator: "Legal OS Demo",
     updated: "10/21/2025",
     thumbnail: "/consumer-protection.jpg",
   },
   {
-    id: "contract-breach",
     name: "Solar Contract Breach Case",
     type: "Parse",
-    processorType: "parse",
     files: "1 file",
     creator: "Legal OS Demo",
     updated: "10/21/2025",
@@ -67,11 +53,7 @@ const pipelines = [
   },
 ]
 
-interface RecentPipelinesProps {
-  onPipelineClick?: (id: string, processorType: string) => void
-}
-
-export function RecentPipelines({ onPipelineClick }: RecentPipelinesProps) {
+export function RecentPipelines() {
   return (
     <section>
       <h2 className="mb-6 text-xl font-semibold">Recent pipelines</h2>
@@ -79,7 +61,6 @@ export function RecentPipelines({ onPipelineClick }: RecentPipelinesProps) {
         {pipelines.map((pipeline, index) => (
           <Card
             key={index}
-            onClick={() => onPipelineClick?.(pipeline.id, pipeline.processorType)}
             className="group cursor-pointer overflow-hidden border border-border bg-card transition-all hover:border-primary/50 hover:shadow-md"
           >
             <div className="relative aspect-[3/2] overflow-hidden bg-muted">

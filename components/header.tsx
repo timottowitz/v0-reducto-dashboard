@@ -6,11 +6,7 @@ import { Input } from "@/components/ui/input"
 import { CreatePipelineDialog } from "@/components/create-pipeline-dialog"
 import { useState } from "react"
 
-interface HeaderProps {
-  onCreatePipeline?: (pipelineId: string, processorType: string) => void
-}
-
-export function Header({ onCreatePipeline }: HeaderProps) {
+export function Header() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   return (
@@ -37,7 +33,7 @@ export function Header({ onCreatePipeline }: HeaderProps) {
         </div>
       </header>
 
-      <CreatePipelineDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} onCreatePipeline={onCreatePipeline} />
+      <CreatePipelineDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
     </>
   )
 }

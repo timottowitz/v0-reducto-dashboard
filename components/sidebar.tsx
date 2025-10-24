@@ -11,7 +11,7 @@ export function Sidebar() {
             <path d="M4 7h16M4 12h16M4 17h16" className="stroke-background" />
           </svg>
         </div>
-        <span className="text-lg font-semibold">Entity Workbench</span>
+        <span className="text-lg font-semibold">Legal OS</span>
       </div>
 
       {/* Navigation */}

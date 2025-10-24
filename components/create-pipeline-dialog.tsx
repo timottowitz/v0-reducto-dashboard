@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { X, FileText, Table, FileStack, Edit3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,12 +9,12 @@ import { Input } from "@/components/ui/input"
 interface CreatePipelineDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  onCreatePipeline?: (pipelineId: string, processorType: string) => void
 }
 
 type ProcessorType = "parse" | "extract" | "split" | "edit"
 
-export function CreatePipelineDialog({ open, onOpenChange, onCreatePipeline }: CreatePipelineDialogProps) {
+export function CreatePipelineDialog({ open, onOpenChange }: CreatePipelineDialogProps) {
+  const router = useRouter()
   const [selectedProcessor, setSelectedProcessor] = useState<ProcessorType>("extract")
   const [pipelineName, setPipelineName] = useState("")
 
@@ -49,9 +50,8 @@ export function CreatePipelineDialog({ open, onOpenChange, onCreatePipeline }: C
   const handleCreate = () => {
     const name = pipelineName || "untitled-pipeline"
     console.log("[v0] Creating pipeline:", { selectedProcessor, pipelineName: name })
-    onCreatePipeline?.(name, selectedProcessor)
     onOpenChange(false)
-    setPipelineName("")
+    router.push(`/pipeline/${name}?type=${selectedProcessor}`)
   }
 
   return (
